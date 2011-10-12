@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/browser"
+           xmlns:zope="http://namespaces.zope.org/zope"
+           i18n_domain="pleiades.contentratings">
+
+   <pages
+      for="contentratings.interfaces.IUserRating"
+      class=".basic.ThreeStarUserRating"
+      permission="zope.Public"
+      allowed_attributes="rate remove_rating">
+    
+    <page
+        name="three_small_stars"
+        template="stars.pt"/>
+
+    <!--page
+        name="three_small_stars_read"
+        template="stars_view.pt" /-->
+  
+  </pages>
+
+</configure>
+
