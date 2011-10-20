@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta
 from zope.interface import Interface, implements
+from zope.component import getAdapters, getMultiAdapter
 from zope.component import queryUtility, queryMultiAdapter
 from zope.traversing.browser.interfaces import IAbsoluteURL
 from contentratings.browser.interfaces import IAnonymousSession
 from contentratings.browser.interfaces import IRatingView
 from contentratings.interfaces import _
+from contentratings.interfaces import IUserRating
 from zope.schema.interfaces import IVocabularyTokenized
 from ZPublisher.BaseRequest import DefaultPublishTraverse
 
@@ -14,6 +16,10 @@ except ImportError:
     # No Plone
     class IStatusMessage(Interface):
         pass
+
+def rating(o):
+    return float(
+        dict(getAdapters((o,), IUserRating))['three_stars'].averageRating)
 
 class BasicEditorialRatingView(object):
     """A basic view for applying and removing user ratings.  Expects

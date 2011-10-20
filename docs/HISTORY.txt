@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2 (2011-10-20)
+----------------
+- Add a rating() function for use in other pleiades packages.
+
 0.1 (2011-10-12)
 ----------------
 - Initial release
