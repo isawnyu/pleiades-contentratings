@@ -17,9 +17,11 @@ except ImportError:
     class IStatusMessage(Interface):
         pass
 
+
 def rating(o):
-    return float(
-        dict(getAdapters((o,), IUserRating))['three_stars'].averageRating)
+    three_star = dict(getAdapters((o,), IUserRating)).get('three_stars', 0)
+    return float(three_star and three_star.averageRating)
+
 
 class BasicEditorialRatingView(object):
     """A basic view for applying and removing user ratings.  Expects
